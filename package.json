@@ -47,7 +47,11 @@
       },
       {
         "command": "code-runner.runCustomCommand",
-        "title": "Run Custom Command"
+        "title": "Run Custom Command",
+        "icon": {
+          "light": "./images/run-light.svg",
+          "dark": "./images/run-dark.svg"
+        }
       },
       {
         "command": "code-runner.runByLanguage",
@@ -84,6 +88,11 @@
           "group": "navigation"
         },
         {
+          "when": "!inOutput && config.code-runner.showRunCommandInEditorContextMenu",
+          "command": "code-runner.runCustomCommand",
+          "group": "navigation"
+        },
+        {
           "when": "inOutput && !config.code-runner.runInTerminal",
           "command": "code-runner.stop",
           "group": "stop-code-run"
@@ -94,12 +103,22 @@
           "when": "config.code-runner.showRunIconInEditorTitleMenu",
           "command": "code-runner.run",
           "group": "navigation"
+        },
+        {
+          "when": "config.code-runner.showRunCustomIconInEditorTitleMenu",
+          "command": "code-runner.run",
+          "group": "navigation"
         }
       ],
       "explorer/context": [
         {
           "when": "!explorerResourceIsFolder && config.code-runner.showRunCommandInExplorerContextMenu",
           "command": "code-runner.run",
+          "group": "navigation"
+        },
+        {
+          "when": "!explorerResourceIsFolder && config.code-runner.showRunCustomCommandInExplorerContextMenu",
+          "command": "code-runner.runCustomCommand",
           "group": "navigation"
         }
       ]
@@ -290,10 +309,28 @@
           "description": "Whether to show 'Run Code' icon in editor title menu.",
           "scope": "resource"
         },
+        "code-runner.showRunCustomIconInEditorTitleMenu": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to show 'Run Code with Custom command' icon in editor title menu.",
+          "scope": "resource"
+        },
         "code-runner.showRunCommandInEditorContextMenu": {
           "type": "boolean",
           "default": true,
           "description": "Whether to show 'Run Code' command in editor context menu.",
+          "scope": "resource"
+        },
+        "code-runner.showRunCustomCommandInEditorContextMenu": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to show 'Run Code with Custom command' command in editor context menu.",
+          "scope": "resource"
+        },
+        "code-runner.showRunCustomCommandInExplorerContextMenu": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to show 'Run Code with Custom command' command in explorer context menu.",
           "scope": "resource"
         },
         "code-runner.showRunCommandInExplorerContextMenu": {
